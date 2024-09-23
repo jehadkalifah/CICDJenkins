@@ -6,7 +6,7 @@ pipeline {
             filename 'Dockerfile'
        // directory name, in case Dockerfile existed in a different directory/path    
 	   // dir 'build'
-	    label 'cent7agent'
+	    label 'dockeragent'
 	   // args '-v /tmp:/tmp'
         }
     }

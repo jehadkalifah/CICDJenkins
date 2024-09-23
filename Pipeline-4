@@ -2,7 +2,9 @@
 pipeline {
     agent {
         dockerfile {
+            // it will build a docker image from dockerfile
             filename 'Dockerfile'
+       // directory name, in case Dockerfile existed in a different directory/path    
 	   // dir 'build'
 	    label 'cent7agent'
 	   // args '-v /tmp:/tmp'
@@ -11,11 +13,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                // defining the environment variable HOME
+                // so shell commands will be executed under HOME directory
+                // where you don't want use WORKDIR temporary
             	withEnv(["HOME=${env.WORKSPACE}"]) {
-			sh 'ls -l'
-			sh 'python -V'
-			sh 'pip install -r ./reqts.txt'
-		}	
+                    sh 'ls -l'
+                    sh 'python -V'
+                    sh 'pip install -r ./reqts.txt'
+                }	
             }
         }
     }
